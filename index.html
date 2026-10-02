@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Name | Video Editor</title>
+<meta name="description" content="Video editor for creators and brands. Long-form and short-form edits built to hold attention.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a0c;--surf:#141417;--line:#26262d;--text:#f4f4f6;--mute:#9e9ea8;--acc:#ff5a1f}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:15px 28px;border-radius:999px;font-weight:600;font-size:15px;border:1.5px solid var(--line);cursor:pointer;background:none;color:var(--text);font-family:inherit;transition:transform .15s,background .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.primary{background:var(--acc);border-color:var(--acc);color:#fff}
+.btn.white{background:#fff;border-color:#fff;color:var(--bg)}
+.btn:focus-visible,summary:focus-visible,a:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+
+/* nav */
+nav{position:sticky;top:0;z-index:10;background:rgba(10,10,12,.85);backdrop-filter:blur(12px)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;align-items:center;gap:8px;font-weight:800;letter-spacing:.06em;font-size:17px}
+.logo i{width:10px;height:10px;border-radius:50%;background:var(--acc)}
+.links{display:flex;gap:36px;color:var(--mute);font-weight:500;font-size:15px}
+.links a:hover{color:var(--text)}
+nav .btn{padding:12px 22px}
+
+/* hero */
+.hero{padding:110px 0 100px}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid var(--line);background:var(--surf);border-radius:999px;font-size:12px;font-weight:600;color:var(--mute);margin-bottom:28px}
+.pill i{width:7px;height:7px;border-radius:50%;background:var(--acc)}
+h1{font-size:clamp(40px,7vw,84px);font-weight:800;line-height:1.05;letter-spacing:-.035em;max-width:1000px}
+.hero p{font-size:clamp(16px,2vw,20px);color:var(--mute);max-width:700px;margin:28px 0 32px;line-height:1.5}
+.row{display:flex;gap:14px;flex-wrap:wrap}
+.stats{display:flex;gap:clamp(24px,5vw,64px);margin-top:56px}
+.stats b{display:block;font-size:clamp(28px,4vw,44px);font-weight:700;letter-spacing:-.03em}
+.stats span{font-size:14px;color:var(--mute)}
+
+/* sections */
+section{padding:100px 0}
+.alt{background:var(--surf)}
+.eyebrow{color:var(--acc);font-weight:600;font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px}
+h2{font-size:clamp(32px,5vw,52px);font-weight:800;line-height:1.1;letter-spacing:-.03em}
+.sub{color:var(--mute);font-size:18px;margin-top:14px;max-width:560px}
+.head{margin-bottom:48px}
+
+/* work */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px 24px}
+.grid.short{grid-template-columns:repeat(4,1fr);margin-top:24px}
+.sub-title{margin:56px 0 0;font-size:22px;font-weight:700;letter-spacing:-.02em}
+.vid{position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:linear-gradient(135deg,#6a2a12,#0d0d10);cursor:pointer;border:0;width:100%;display:block}
+.short .vid{aspect-ratio:9/16}
+.vid img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.play{position:absolute;top:50%;left:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:rgba(255,255,255,.16);border:1.5px solid #fff;display:grid;place-items:center;transition:transform .2s,background .2s}
+.play::after{content:"";border-left:20px solid #fff;border-top:12px solid transparent;border-bottom:12px solid transparent;margin-left:5px}
+.vid:hover .play{transform:scale(1.1);background:var(--acc)}
+.card h3{font-size:19px;font-weight:600;margin-top:14px;letter-spacing:-.01em}
+.card small{color:var(--acc);font-weight:600;font-size:12px;letter-spacing:.08em}
+.more{margin-top:48px}
+.hidden{display:none}
+
+/* services + reviews */
+.cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.cols.three{grid-template-columns:repeat(3,1fr)}
+.box{background:var(--bg);border:1px solid var(--line);border-radius:20px;padding:32px 28px}
+.alt .box{background:var(--bg)}
+.box .n{font-size:44px;font-weight:700;color:var(--acc);letter-spacing:-.03em;margin-bottom:14px}
+.box h3{font-size:22px;font-weight:600;line-height:1.2;letter-spacing:-.02em;margin-bottom:12px}
+.box p{color:var(--mute);font-size:15px}
+.rev{background:var(--surf)}
+.stars{color:var(--acc);letter-spacing:.15em;margin-bottom:16px}
+.rev p{color:var(--text);font-size:18px;margin-bottom:24px}
+.who{display:flex;align-items:center;gap:12px}
+.who i{width:40px;height:40px;border-radius:50%;background:var(--line)}
+.who b{display:block;font-size:14px}
+.who span{font-size:13px;color:var(--mute)}
+
+/* faq */
+details{border-bottom:1px solid var(--line)}
+details:first-of-type{border-top:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:26px 0;font-size:clamp(17px,2vw,22px);font-weight:600;letter-spacing:-.01em}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--acc);font-size:28px;font-weight:500}
+details[open] summary::after{content:"–"}
+details p{color:var(--mute);font-size:17px;padding:0 0 26px;max-width:760px}
+
+/* cta + footer */
+.cta{background:linear-gradient(135deg,#f2521a,#6e1d08);border-radius:32px;padding:88px 40px;text-align:center}
+.cta h2{max-width:800px;margin:0 auto 20px;font-size:clamp(30px,5vw,60px)}
+.cta p{color:#ffe3d6;font-size:19px;margin-bottom:32px}
+footer{border-top:1px solid var(--line);padding:40px 0;color:var(--mute);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.soc{display:flex;gap:28px;font-weight:500}
+.soc a:hover{color:var(--text)}
+
+@media(max-width:960px){
+  .grid,.cols,.cols.three{grid-template-columns:1fr 1fr}
+  .grid.short{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .wrap{padding:0 20px}
+  .links{display:none}
+  nav .wrap{height:64px}
+  .hero{padding:56px 0}
+  section{padding:56px 0}
+  .grid,.cols,.cols.three,.grid.short{grid-template-columns:1fr}
+  .row .btn{flex:1 1 100%}
+  .cta{padding:48px 24px;border-radius:24px}
+  .box{padding:24px 22px}
+  .play{width:56px;height:56px;margin:-28px 0 0 -28px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#top" class="logo"><i></i>YOUR NAME</a>
+    <div class="links"><a href="#work">Work</a><a href="#services">Services</a><a href="#reviews">Reviews</a><a href="#faq">FAQ</a></div>
+    <a class="btn primary js-talk" href="#">Let's Talk</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="pill"><i></i>Video editor for creators &amp; brands</div>
+    <h1>Videos that hold attention and turn views into customers.</h1>
+    <p>I edit long-form and short-form videos for creators, coaches and brands: sharp storytelling, clean pacing and hooks that keep people watching.</p>
+    <div class="row">
+      <a class="btn primary js-talk" href="#">Let's Talk</a>
+      <a class="btn" href="#work">View My Work</a>
+    </div>
+    <div class="stats">
+      <div><b>3+</b><span>Years editing</span></div>
+      <div><b>200+</b><span>Videos delivered</span></div>
+      <div><b>48h</b><span>Fast turnaround</span></div>
+    </div>
+  </div>
+</header>
+
+<section id="work">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow">Selected work</div>
+      <h2>Edits that perform.</h2>
+      <p class="sub">A mix of long-form YouTube edits and short-form content built for retention.</p>
+    </div>
+    <div class="grid" id="long"></div>
+    <h3 class="sub-title">Short-form</h3>
+    <div class="grid short" id="short"></div>
+  </div>
+</section>
+
+<section id="services" class="alt">
+  <div class="wrap">
+    <div class="head"><div class="eyebrow">Services</div><h2>How I can help.</h2></div>
+    <div class="cols">
+      <div class="box"><div class="n">01</div><h3>Long-form YouTube Editing</h3><p>Story-driven edits with smooth pacing, sound design and retention-focused structure.</p></div>
+      <div class="box"><div class="n">02</div><h3>Short-form Content</h3><p>Reels, Shorts and TikToks with scroll-stopping hooks and bold captions.</p></div>
+      <div class="box"><div class="n">03</div><h3>Ads &amp; Promo Videos</h3><p>Direct-response edits designed to sell your product, course or service.</p></div>
+      <div class="box"><div class="n">04</div><h3>Motion Graphics &amp; Color</h3><p>Titles, lower thirds, animation and color grading for a premium look.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="wrap">
+    <div class="head"><div class="eyebrow">Reviews</div><h2>What clients say.</h2></div>
+    <div class="cols three">
+      <div class="box rev"><div class="stars">★★★★★</div><p>“He turned hours of raw footage into a tight, engaging episode. Our watch time went up right away.”</p><div class="who"><i></i><div><b>Client Name</b><span>Podcast Host</span></div></div></div>
+      <div class="box rev"><div class="stars">★★★★★</div><p>“Fast, communicative, and every edit felt on-brand. One of the easiest people I have worked with.”</p><div class="who"><i></i><div><b>Client Name</b><span>Marketing Lead</span></div></div></div>
+      <div class="box rev"><div class="stars">★★★★★</div><p>“The short-form clips brought us more followers in a month than we got in the previous quarter.”</p><div class="who"><i></i><div><b>Client Name</b><span>Business Coach</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="alt">
+  <div class="wrap">
+    <div class="head"><div class="eyebrow">FAQ</div><h2>Questions, answered.</h2></div>
+    <details open><summary>How long does an edit take?</summary><p>Most long-form videos are delivered in 2–4 days and short-form batches in 24–48 hours, depending on length and complexity.</p></details>
+    <details><summary>What do I need to send to get started?</summary><p>Your raw footage, any brand assets (logos, fonts, colors), and a few reference videos you like.</p></details>
+    <details><summary>How many revisions are included?</summary><p>Every project includes two rounds of revisions so the final cut matches your vision.</p></details>
+    <details><summary>Do you edit both long-form and short-form?</summary><p>Yes. I edit YouTube videos, podcasts, Reels, Shorts, TikToks and ads.</p></details>
+    <details><summary>How does pricing work?</summary><p>Pricing depends on video length and editing style. Send me a message with your project for a quick quote.</p></details>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cta">
+      <h2>Ready to make your videos work harder?</h2>
+      <p>Tell me about your project and I will get back to you within 24 hours.</p>
+      <a class="btn white js-talk" href="#">Let's Talk</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="#top" class="logo"><i></i>YOUR NAME</a>
+    <div class="soc">
+      <a href="https://youtube.com/@yourchannel" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://instagram.com/yourhandle" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://linkedin.com/in/yourname" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:you@example.com">Email</a>
+    </div>
+    <span>© 2026 Your Name. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+/* ====== EDIT THIS SECTION ====== */
+// Your Tally (or any booking/contact) link. Every "Let's Talk" button uses it.
+const CONTACT_LINK = "https://tally.so/r/your-form-id";
+
+// YouTube video ID = the part after v= in the link (youtube.com/watch?v=THIS_PART)
+// For Shorts: youtube.com/shorts/THIS_PART
+const LONG_FORM = [
+  { id: "VIDEO_ID_1", title: "Podcast Episode Edit" },
+  { id: "VIDEO_ID_2", title: "Documentary-Style Story" },
+  { id: "VIDEO_ID_3", title: "Brand Story Film" },
+  { id: "VIDEO_ID_4", title: "Tech Review Cut" },
+  { id: "VIDEO_ID_5", title: "Cinematic Vlog" },
+  { id: "VIDEO_ID_6", title: "Course Promo" }
+];
+const SHORT_FORM = [
+  { id: "SHORT_ID_1", title: "Hook-first Reel" },
+  { id: "SHORT_ID_2", title: "Coaching Clip" },
+  { id: "SHORT_ID_3", title: "Product Teaser" },
+  { id: "SHORT_ID_4", title: "Behind the Scenes" }
+];
+const SHOW_FIRST = 3; // long-form videos shown before "View more"
+/* ====== END EDIT SECTION ====== */
+
+document.querySelectorAll(".js-talk").forEach(a => { a.href = CONTACT_LINK; a.target = "_blank"; a.rel = "noopener"; });
+
+function card(v, tag) {
+  const el = document.createElement("div");
+  el.className = "card";
+  el.innerHTML = '<button class="vid" aria-label="Play ' + v.title + '">' +
+    '<img loading="lazy" alt="" src="https://i.ytimg.com/vi/' + v.id + '/hqdefault.jpg" onerror="this.remove()">' +
+    '<span class="play"></span></button><small>' + tag + '</small><h3>' + v.title + '</h3>';
+  el.querySelector(".vid").addEventListener("click", function () {
+    this.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + v.id +
+      '?autoplay=1&rel=0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen title="' + v.title + '"></iframe>';
+  }, { once: true });
+  return el;
+}
+
+const longEl = document.getElementById("long");
+LONG_FORM.forEach((v, i) => {
+  const c = card(v, "LONG-FORM");
+  if (i >= SHOW_FIRST) c.classList.add("hidden", "extra");
+  longEl.appendChild(c);
+});
+SHORT_FORM.forEach(v => document.getElementById("short").appendChild(card(v, "SHORT-FORM")));
+
+if (LONG_FORM.length > SHOW_FIRST) {
+  const b = document.createElement("button");
+  b.className = "btn more"; b.textContent = "View more work";
+  b.onclick = () => { document.querySelectorAll(".extra").forEach(e => e.classList.remove("hidden")); b.remove(); };
+  longEl.after(b);
+}
+</script>
+</body>
+</html>
